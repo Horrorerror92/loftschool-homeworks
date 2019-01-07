@@ -1,19 +1,33 @@
 import React, { Fragment, PureComponent } from 'react';
 import SectionTitle from '../SectionTitle';
 import './Layout.css';
+import LoginForm from '../LoginForm'
 
 class Layout extends PureComponent {
   render() {
-    return 'empty';
+
+    const {header, footer} = this.props;
+   
+    return (
+      <Fragment>
+        {this.renderHeader(header)}
+        <main className = {`main main--with-footer main--with-header`}>
+          <SectionTitle className = {`main__title`}>Main</SectionTitle>
+          <LoginForm/>
+        </main>
+        {this.renderFooter(footer)}
+      </Fragment>
+    );
   }
 
   renderHeader(HeaderChild) {
-    return 'empty';
+    return <HeaderChild/>;
   }
 
   renderFooter(FooterChild) {
-    return 'empty';
+    return <FooterChild/>;
   }
+  
 }
 
 export default Layout;
