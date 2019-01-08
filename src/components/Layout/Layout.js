@@ -6,7 +6,7 @@ import LoginForm from '../LoginForm'
 class Layout extends PureComponent {
   render() {
 
-    const {header, footer} = this.props;
+    const {header, footer, children} = this.props;
    
     return (
       <Fragment>
@@ -21,11 +21,11 @@ class Layout extends PureComponent {
   }
 
   renderHeader(HeaderChild) {
-    return <HeaderChild/>;
+    return HeaderChild ? <HeaderChild/> : null;
   }
 
   renderFooter(FooterChild) {
-    return <FooterChild/>;
+    return FooterChild ? <FooterChild/> : null;
   }
   
 }
