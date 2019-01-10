@@ -1,7 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import SectionTitle from '../SectionTitle';
 import './Layout.css';
-import LoginForm from '../LoginForm'
 
 class Layout extends PureComponent {
   render() {
@@ -13,7 +12,7 @@ class Layout extends PureComponent {
         {this.renderHeader(header)}
         <main className = {`main main--with-footer main--with-header`}>
           <SectionTitle className = {`main__title`}>Main</SectionTitle>
-          <LoginForm/>
+          {children}
         </main>
         {this.renderFooter(footer)}
       </Fragment>
