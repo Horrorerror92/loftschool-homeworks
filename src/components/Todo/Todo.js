@@ -15,20 +15,53 @@ class Todo extends PureComponent {
     return biggest + 1;
   }
 
-  handleChange = event => {};
+  handleChange = event => {
+    this.setState({
+    inputValue: event.target.value
+    });
+  };
 
-  createNewRecordByEnter = event => {};
-
+  createNewRecordByEnter = event => {
+    if(event.key === 'Enter') {
+      this.createNewRecord();
+    }
+  };
+    
   toggleRecordComplete = event => {};
 
   createNewRecord = () => {};
 
   render() {
-    return;
+
+    const { savedData } = this.props;
+    return (
+      <Card title = {`Список дел`}>
+      <div className = {`todo t-todo-list`}>
+        {this.renderEmptyRecord()}
+        {savedData.map(this.renderRecord)}
+      </div>
+    </Card>
+    );
   }
 
   renderEmptyRecord() {
-    return;
+    return (
+      <div className = {`todo-item todo-item-new`}>
+          <input 
+            className = {`todo-input t-input`} 
+            placeholder =  {`Введите задачу`} 
+            value = {this.state.inputValue}
+            onChange = {this.handleChange}
+            onKeyPress = {this.createNewRecordByEnter}
+          />
+          <span 
+            className = {`plus t-plus`} 
+            onClick={this.createNewRecord}
+          >
+            +
+          </span>
+        </div>    
+    );
   }
 
   renderRecord = record => {
