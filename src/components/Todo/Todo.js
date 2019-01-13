@@ -13,6 +13,7 @@ class Todo extends PureComponent {
     const { savedData } = this.props;
     const biggest = savedData.reduce((acc, el) => Math.max(acc, el.id), 0);
     return biggest + 1;
+    
   }
 
   handleChange = event => {
@@ -27,9 +28,40 @@ class Todo extends PureComponent {
     }
   };
     
-  toggleRecordComplete = event => {};
+  toggleRecordComplete = event => {
+    const {savedData, saveData} = this.props;
+    const id = parseInt(event.target.id, 10);
+    const newData = savedData.map((data) =>{
+      return data.id === id
+      ? {...data, x : data.x === "[x]" ? "[]" : "[x]"}
+      : {...data}
+    });
 
-  createNewRecord = () => {};
+    saveData(newData);
+
+  };
+
+  createNewRecord = () => {
+
+    const {inputValue} = this.state;
+    const { savedData, saveData } = this.props;
+    
+    if(inputValue) {
+
+      saveData([
+        {
+          id: this.getId(),
+          value: inputValue,
+          x : "[]"
+        },
+        ...savedData  
+      ]);
+
+    }
+   
+    this.setState({ inputValue: "" });
+
+  };
 
   render() {
 
@@ -56,7 +88,7 @@ class Todo extends PureComponent {
           />
           <span 
             className = {`plus t-plus`} 
-            onClick={this.createNewRecord}
+            onClick = {this.createNewRecord}
           >
             +
           </span>
@@ -65,7 +97,16 @@ class Todo extends PureComponent {
   }
 
   renderRecord = record => {
-    return;
+    return (
+      <div className ={`todo-item t-todo`} key={record.id}>
+        <p className = {`todo-item__text`}>{record.value}</p>
+        <span 
+          className = {`todo-item__flag t-todo-complete-flag`}
+          onClick = {this.toggleRecordComplete}
+          id = {record.id}>
+          {record.x}
+        </span>
+      </div>);
   };
 }
 
