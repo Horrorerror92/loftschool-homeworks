@@ -6,18 +6,79 @@
 
 import React, { Component } from 'react';
 import style from './LoginForm.module.css';
-import { withAuth } from '../../context/Auth'
+import { withAuth } from '../../context/Auth';
+import { Redirect } from 'react-router-dom';
+import classnames from 'classnames';
 
 class LoginForm extends Component {
-  render() {
-    return (
-      <div className = {style.bg}>
-        <div className = {style.form}>
-          
-        </div>
 
-      </div>
-    )
+  state = {
+    email: '',
+    password: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name] : e.target.value 
+    });
+  }
+
+  handleFormclick = (e) => {
+    e.preventDefault();
+    const { authorize } = this.props;
+    const { email, password } = this.state;
+    authorize(email, password); 
+  }
+
+  render() {
+
+    const { isAuthorized, authError} = this.props;
+    const {email, password} = this.state;
+
+    return isAuthorized
+      ? (<Redirect to = "/app" />)
+      : (
+
+        <div className = {style.bg}>
+          <div className = {style.form}>
+            <p>
+              <label htmlFor = {style.labelText}>
+                <span className = {style.labelText}> Почта </span>
+              </label>
+              <input
+                type = "text"
+                name = "email"
+                className = {classnames(style.input, 't-input-email')}
+                value = {email}
+                onChange = {this.handleChange}
+               />
+            </p>
+            <p>
+              <label htmlFor = {style.labelText}>
+                <span className = {style.labelText}> Пароль </span>
+              </label>
+              <input
+                type = "password"
+                name = "password"
+                className = {classnames(style.input, 't-input-password')}
+                value = {password}
+                onChange = {this.handleChange}
+               />
+            </p>
+                    
+            {authError === '' || <p className={style.error}>{authError}</p>}
+            
+            <div className = {style.buttons}>
+              <button
+                className = {classnames(style.button, 't-login')}
+                onClick = {this.handleFormclick}
+              >
+                Войти
+              </button>
+            </div>
+          </div>
+        </div>
+        )
   }
 }
 
