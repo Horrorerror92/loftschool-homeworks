@@ -6,3 +6,9 @@
   justify-content: center;
   text-align: center;
 }
+.title {
+  margin: 0;
+  text-align: center;
+  border-bottom: 1px solid;
+  padding: 4px 0;
+}

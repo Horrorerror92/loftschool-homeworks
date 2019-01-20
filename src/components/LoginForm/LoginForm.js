@@ -40,7 +40,7 @@ class LoginForm extends Component {
       : (
 
         <div className = {style.bg}>
-          <div className = {style.form}>
+          <div className = {classnames(style.form, 't-form')}>
             <p>
               <label htmlFor = {style.labelText}>
                 <span className = {style.labelText}> Почта </span>

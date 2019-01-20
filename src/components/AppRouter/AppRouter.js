@@ -11,7 +11,7 @@
 // используйте стили из AppRouter.module.css
 
 import React, {Component} from 'react';
-import {Route, Link, Switch, Redirect} from 'react-router-dom';
+import {Route, Link, Switch} from 'react-router-dom';
 import Home from '../Home';
 import InboxList from '../InboxList';
 import InboxMail from '../InboxMail';
@@ -45,7 +45,13 @@ class AppRouter extends Component {
             </ul>
           </nav>
           <div className = {style.content}>
-            <h3 className = {style.title}>Home</h3>   
+            <Switch>
+              <Route exact path = "/app" component = { Home } />
+              <Route exact path = "/app/inbox" component = { InboxList } />
+              <Route path = "/app/inbox/:id" component = { InboxMail } />
+              <Route exact path = "/app/outbox" component = { OutboxList }/>
+              <Route path = "/app/outbox/:id" component = { OutboxMail } />
+            </Switch>   
           </div>
         </div>
       </div>
