@@ -37,7 +37,7 @@ class Search extends Component {
 
   render(){
     
-    const searchValue = this.state;
+    const { searchValue }  = this.state;
     const {search: {result, isFetching, error}} = this.props;
 
 
