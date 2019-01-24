@@ -17,28 +17,29 @@ class Search extends Component {
   }
 
   handleChange = (e) => {
+    e.preventDefault();
     this.setState({
       searchValue: e.target.value
     });
   }
 
   handleClick = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     const { searchValue } = this.state;
     const { searchRequest } = this.props;
     
+    if (searchValue !== '') { 
     searchRequest(searchValue);
-
-    this.setState({
-      searchValue: ''
-    })
+    }
+    
 
   }
 
   render(){
     
     const searchValue = this.state;
-    const { result, isFetching, error} = this.props;
+    const {search: {result, isFetching, error}} = this.props;
+
 
     if(isFetching) { 
       return <p>Выполняется поиск</p>;
@@ -47,21 +48,22 @@ class Search extends Component {
       return <p> Ошибка </p>;
     }
     
+    
     return (
 
       <>
         <div className = { style.previewList}>
           <input
-          className = {style.input}
+          className = {`t-input ${style.input}`}
+          value = {searchValue} 
           onChange = {this.handleChange}
           placeholder = 'Название сериала'
-          value = { searchValue } 
           />
           <div className = {style.buttonWrapper}>
-            <button className = {style.button} onClick = {this.handleClick}>Найти</button>
+            <button className = {`t-search-button ${style.button}`} onClick = {this.handleClick}>Найти</button>
           </div>
         </div>
-        <div className = {style.searchPanel}>
+        <div className = {`t-search-result ${style.searchPanel}`}>
           {result ? 
             result.map(index => (
             <ShowPreview 
@@ -81,5 +83,5 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { searchRequest }
+const mapDispatchToProps = { searchRequest };
 export default connect (mapStateToProps, mapDispatchToProps)(Search);

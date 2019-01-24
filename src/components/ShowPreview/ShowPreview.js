@@ -11,7 +11,7 @@ class ShowPreview extends Component {
     const { id, image, name, summary} = this.props;
 
     return (
-      <div className = {style.container}>
+      <div className = {`t-preview ${style.container}`}S>
         <div>
           <Link
             to = {`/shows/${id}`}
