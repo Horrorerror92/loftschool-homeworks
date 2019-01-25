@@ -9,6 +9,7 @@ import style from './Search.module.css';
 import { searchRequest } from  '../../actions';
 import { connect } from 'react-redux';
 import ShowPreview from '../ShowPreview';
+import { match } from 'minimatch';
 
 class Search extends Component {
 
@@ -38,8 +39,8 @@ class Search extends Component {
   render(){
     
     const { searchValue }  = this.state;
-    const {search: {result, isFetching, error}} = this.props;
-
+    const {search: {result, isFetching, error }, match} = this.props;
+  
 
     if(isFetching) { 
       return <p>Выполняется поиск</p>;
@@ -52,7 +53,7 @@ class Search extends Component {
     return (
 
       <>
-        <div className = { style.previewList}>
+        <div className = { style.previewList }>
           <input
           className = {`t-input ${style.input}`}
           value = {searchValue} 
@@ -71,15 +72,20 @@ class Search extends Component {
               image = { index.image }
               name = { index.name }
               id = { index.id }
-              summary = { index.summary} />
+              summary = { index.summary}
+              match = { match }
+               />
             )) : 
             null
             }
+            
         </div>      
       </>
 
     )
+    
   } 
+  
 }
 
 const mapStateToProps = state => state;

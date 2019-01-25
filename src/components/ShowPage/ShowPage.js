@@ -26,9 +26,9 @@ class ShowPage extends Component {
     if(error) {
       return <p> Ошибка </p>;
     }
-    
+
     return (
-      <>
+      <div>
         <p>{result.name}</p>
         { result.image && <img alt = {result.name} src = {result.image.medium} />}
         <div dangerouslySetInnerHTML = {{__html:result.summary}} />
@@ -41,11 +41,11 @@ class ShowPage extends Component {
           ))
         }
         </div>
-      </>
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { showRequest};
+const mapDispatchToProps = { showRequest };
 export default connect(mapStateToProps, mapDispatchToProps)(ShowPage);

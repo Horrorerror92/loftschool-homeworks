@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
 class ShowPreview extends Component {
   render() {
 
-    const { id, image, name, summary} = this.props;
-
+    const { id, image, name, summary, match } = this.props;
     return (
-      <div className = {`t-preview ${style.container}`}S>
+      <div className = {`t-preview ${style.container}`}>
         <div>
           <Link
             to = {`/shows/${id}`}
@@ -28,3 +27,6 @@ class ShowPreview extends Component {
 }
 
 export default ShowPreview;
+
+
+
