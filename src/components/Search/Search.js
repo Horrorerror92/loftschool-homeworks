@@ -10,7 +10,6 @@ import { searchRequest } from  '../../actions';
 import { connect } from 'react-redux';
 import ShowPreview from '../ShowPreview';
 
-
 class Search extends Component {
 
   state = {
@@ -39,9 +38,8 @@ class Search extends Component {
   render(){
     
     const { searchValue }  = this.state;
-    const {search: {result, isFetching, error }, match} = this.props;
+    const {search: {result, isFetching, error } , match} = this.props;
   
-
     if(isFetching) { 
       return <p>Выполняется поиск</p>;
     }
@@ -73,13 +71,14 @@ class Search extends Component {
               name = { index.name }
               id = { index.id }
               summary = { index.summary}
-              match = { match }
+              match = {match}
                />
             )) : 
             null
             }
             
-        </div>      
+        </div>   
+          
       </>
 
     )

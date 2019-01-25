@@ -7,6 +7,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case searchRequest.toString(): 
       return {...state, result:[], isFetching: true};

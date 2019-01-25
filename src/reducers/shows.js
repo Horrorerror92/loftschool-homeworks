@@ -1,19 +1,21 @@
 import { showRequest, showSuccess, showFailure} from '../actions';
 
 const initialState = {
-  result: [],
+  showResult: [],
   isFetching: false,
-  error: null
+  
 }
 
 export default (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
+    
     case showRequest.toString(): 
-      return {...state, result:[], isFetching: true};
+      return {...state, showResult:[], isFetching: true};
     case showSuccess.toString(): 
-      return {...state, result:action.payload, isFetching: false};
+      return {...state, showResult:action.payload, isFetching: false};
     case showFailure.toString(): 
-      return {...state, error:action.payload, isFetching: false};
+      return {...state, isFetching: false};
     default: 
       return state;
   }

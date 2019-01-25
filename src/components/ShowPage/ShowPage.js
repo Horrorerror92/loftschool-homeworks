@@ -13,27 +13,29 @@ import { showRequest } from '../../actions';
 
 
 class ShowPage extends Component {
-  componentDidMount() {
-    const {showRequest, match} = this.props;
-    showRequest(match.params.id);
-  }
+   componentDidMount() {
+  const {showRequest, match} = this.props;
+  showRequest(match.params.id);
+    
+    }
 
   render(){
-    const {result, isFetching, error} = this.props;
+    const {shows: {showResult, isFetching}} = this.props;
+
+    console.log(this.props)
+     
     if(isFetching) { 
       return <p>Выполняется поиск</p>;
     }
-    if(error) {
-      return <p> Ошибка </p>;
-    }
+   
 
     return (
       <div>
-        <p>{result.name}</p>
-        { result.image && <img alt = {result.name} src = {result.image.medium} />}
-        <div dangerouslySetInnerHTML = {{__html:result.summary}} />
+        <p>{showResult.name}</p>
+        { showResult.image && <img alt = {showResult.name} src = {showResult.image.medium} />}
+        <div dangerouslySetInnerHTML = {{__html:showResult.summary}} />
         <div className = {style.cast}>
-        {result._embedded && result._embedded.cast.map(actor => (
+        {showResult._embedded && showResult._embedded.cast.map(actor => (
           <div className = {`t-person`} key={actor.person.id}>
             <p>{actor.person.name}</p>
             {actor.person.image && <img src={actor.person.image.medium} alt={actor.person.name} />}
