@@ -21,14 +21,11 @@ class ShowPage extends Component {
 
   render(){
     const {shows: {showResult, isFetching}} = this.props;
-
-    console.log(this.props)
      
     if(isFetching) { 
       return <p>Выполняется поиск</p>;
-    }
-   
-
+    } 
+    
     return (
       <div>
         <p>{showResult.name}</p>

@@ -14,7 +14,7 @@ class AppRouter extends Component {
       <div className = {`App`}>
         <Switch>
           <Route exact path = '/' component = { Search } />
-          <Route path = 'shows/:id' component = { ShowPage }/>
+          <Route path = '/shows/:id' component = { ShowPage }/>
         </Switch>
       </div>
     )
