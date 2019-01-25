@@ -9,7 +9,7 @@ import style from './Search.module.css';
 import { searchRequest } from  '../../actions';
 import { connect } from 'react-redux';
 import ShowPreview from '../ShowPreview';
-import { match } from 'minimatch';
+
 
 class Search extends Component {
 
