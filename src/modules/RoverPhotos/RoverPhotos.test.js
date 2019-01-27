@@ -4,6 +4,7 @@ import {
   fetchPhotosRequest,
   fetchPhotosSuccess,
   fetchPhotosFailure
+  
 } from './actions'
 
 const randomAction = {
