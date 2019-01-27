@@ -1,4 +1,3 @@
-
 // Здесь вам нужно реализовать вью
 
 // Подключите его к редакс роутеру
@@ -16,11 +15,7 @@ import RoverPhotos from '../RoverPhotos';
 import { Rovers, changeSol, fetchPhotosRequest, getSol, getPhotos} from '../../modules/RoverPhotos'
 
 class RoversViewer extends Component {
-  constructor (props) {
-    super(props)
-    this.rovers = Rovers();
-}
-
+ 
 componentDidMount() {
   this.photoRequest();
 }
@@ -36,15 +31,39 @@ componentDidUpdate(prevProps) {
 photoRequest = () => {
   const { sol, fetchPhotosRequest } = this.props;
 
-  this.rovers.forEach(rover => fetchPhotosRequest({
+    Rovers.forEach(rover => fetchPhotosRequest({
     name: rover,
     sol: sol.current
   }))
 }
   render() {
-    console.log(this.props);
+    const {sol, photos} = this.props;
+    const earlyListPhotos = [];
+  
     return (
-      <div></div>
+      <div className  = {styles.root}>
+        <SelectSol
+          selectedSol={sol.current}
+          minSol={sol.min}
+          maxSol={sol.max}
+          {...this.props}
+      />
+        <div className={styles.сontainer}>
+        {
+          Rovers.map(roverName => (
+            <RoverPhotos
+              key={roverName}
+              name={roverName}
+              photos={
+                (photos[roverName][sol.current])
+                  ? photos[roverName][sol.current].photos
+                  : earlyListPhotos
+              }
+            />
+          ))
+        }
+        </div>
+      </div>
     )
   }
 }

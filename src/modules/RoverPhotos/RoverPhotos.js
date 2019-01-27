@@ -69,7 +69,7 @@ export default combineReducers({
     photos,
 })
 
-export const getSol = state => state.roverPhotos.sol;
+export const getSol = state => state.roverPhotos.sol
 export const getPhotos = state => state.roverPhotos.photos;
-export const Rovers = () => ['curiosity', 'opportunity', 'spirit'];
+export const Rovers = ['curiosity', 'opportunity', 'spirit'];
 
